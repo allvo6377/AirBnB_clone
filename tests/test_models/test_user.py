@@ -1,8 +1,13 @@
+#!/usr/bin/python3
+"""Tests for the user class"""
 import unittest
 from models.user import User
 from models.base_model import BaseModel
 
+
 class TestUser(unittest.TestCase):
+    """Test suite for the User model."""
+
     def test_inheritance(self):
         user = User()
         self.assertIsInstance(user, BaseModel)
@@ -12,12 +17,12 @@ class TestUser(unittest.TestCase):
         user.email = None
         with self.assertRaises(ValueError):
             user.save()
-   
-   def test_password_attribute_cannot_be_null(self):
-       user = User()
-       user.password = None
-       with self.assertRaises(ValueError):
-           user.save()
+
+    def test_password_attribute_cannot_be_null(self):
+        user = User()
+        user.password = None
+        with self.assertRaises(ValueError):
+            user.save()
 
     def test_get_all_users_returns_empty_list_if_no_users_exist(self):
         user_model = UserModel()
@@ -28,7 +33,7 @@ class TestUser(unittest.TestCase):
         user_model = UserModel()
         user = user_model.get_user_by_email("email@example.com")
         self.assertIsNone(user)
-    
+
     def test_delete_user_deletes_user_from_database(self):
         user_model = UserModel()
         user = User()
@@ -37,12 +42,12 @@ class TestUser(unittest.TestCase):
         user_model.delete_user(user.email)
         user = user_model.get_user_by_email("email@example.com")
         self.assertIsNone(user)
-    
+
     def test_user_class_is_robust_to_unexpected_input(self):
         user_model = UserModel()
         with self.assertRaises(ValueError):
             user_model.save(None)
-    
+
     def test_attributes(self):
         user = User()
         self.assertEqual(user.email, "")
@@ -73,6 +78,7 @@ class TestUser(unittest.TestCase):
         self.assertEqual(user_dict['last_name'], "")
         self.assertIsInstance(user_dict['created_at'], str)
         self.assertIsInstance(user_dict['updated_at'], str)
+
 
 if __name__ == '__main__':
     unittest.main()
