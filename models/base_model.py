@@ -7,8 +7,6 @@ from models import storage
 class BaseModel:
     """Defines all common attributes/methods for other classes"""
 
-    storage = FileStorage()
-
     def __init__(self, *args, **kwargs):
         """Initialize a new BaseModel instance"""
         if kwargs:
@@ -30,7 +28,7 @@ class BaseModel:
     def save(self):
         """Update the updated_at attribute with the current datetime"""
         self.updated_at = datetime.now()
-        self.storage.save()
+        storage.save()
 
     def to_dict(self):
         """Return a dictionary representation of the BaseModel instance"""
