@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""A module for the class FileStorage"""
 import json
 
 from models.base_model import BaseModel
@@ -49,4 +50,4 @@ class FileStorage:
                 cls = eval(cls_name)
                 FileStorage.__objects[key] = cls(**value)
         except FileNotFoundError:
-            return
+            pass
