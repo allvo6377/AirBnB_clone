@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """A module for the class FileStorage"""
 import json
+import datetime
+import os
 
 from models.base_model import BaseModel
 from models.user import User
