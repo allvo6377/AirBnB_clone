@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Contains FileStorage class"""
 import json
+
 from models.base_model import BaseModel
 
 
