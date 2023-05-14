@@ -35,7 +35,7 @@ class FileStorage:
         (only if the JSON file (__file_path) exists)
         """
         try:
-            with open(FileStorage.__file_path, "r") as f:
+            with open(FileStorage.__file_path, "r", encoding="utf-8" ) as f:
                 d = json.load(f)
             for key, value in d.items():
                 cls_name = value["__class__"]
