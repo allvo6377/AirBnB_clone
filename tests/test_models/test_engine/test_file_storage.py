@@ -16,7 +16,7 @@ from models.engine.file_storage import FileStorage
 
 class TestFileStorage(unittest.TestCase):
     def setUp(self):
-        # Create an instance of FileStorage and add some objects to it
+        """Create an instance of FileStorage and add some objects to it"""
         self.storage = FileStorage()
         self.user = User()
         self.state = State()
@@ -24,28 +24,35 @@ class TestFileStorage(unittest.TestCase):
         self.storage.new(self.state)
 
     def tearDown(self):
-        # Delete the JSON file created by the tests
+        """Delete the JSON file created by the tests"""
         try:
             os.remove("file.json")
-        except:
+        except FileNotFoundError:
             pass
 
     def test_all(self):
-        # Test that the 'all' method returns the correct dictionary of objects
+        """Test that the 'all' method returns the correct
+        dictionary of objects
+        """
         objs = self.storage.all()
         self.assertIn("User." + self.user.id, objs)
         self.assertIn("State." + self.state.id, objs)
 
     def test_new(self):
-        # Test that the 'new' method adds an object to the dictionary of objects
+        """Test that the 'new' method adds an object to the
+        dictionary of objects
+        """
         user2 = User()
         self.storage.new(user2)
         objs = self.storage.all()
         self.assertIn("User." + user2.id, objs)
 
     def test_save_reload(self):
-        # Test that the 'save' method serializes the objects to the JSON file,
-        # and that the 'reload' method deserializes the objects back into memory
+        """
+        Test that the 'save' method serializes the objects to the JSON file,
+        and that the 'reload' method deserializes the
+        objects back into memory
+        """
         self.storage.save()
         with open("file.json", "r") as f:
             data = json.load(f)
@@ -56,5 +63,7 @@ class TestFileStorage(unittest.TestCase):
         objs = self.storage.all()
         self.assertIn("User." + self.user.id, objs)
         self.assertIn("State." + self.state.id, objs)
+
+
 if __name__ == "__main__":
     unittest.main()

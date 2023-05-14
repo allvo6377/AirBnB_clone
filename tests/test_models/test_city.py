@@ -3,6 +3,7 @@
 import unittest
 from models.city import City
 
+
 class TestCity(unittest.TestCase):
     def test_city(self):
         city = City()
@@ -10,6 +11,6 @@ class TestCity(unittest.TestCase):
         self.assertIsInstance(city.state_id, str)
         self.assertIsInstance(city.name, str)
 
+
 if __name__ == '__main__':
     unittest.main()
-

@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """A module containing unit tests for the base_model class"""
 import unittest
-from datetime import datetime,timedelta
+from datetime import datetime, timedelta
 from models import storage
 from models.base_model import BaseModel
 
@@ -31,7 +31,6 @@ class TestBaseModel(unittest.TestCase):
         # Test calling the to_dict method with an argument
         with self.assertRaises(TypeError):
             bm.to_dict("invalid_arg")
-
 
     def test_equality(self):
         # Test equality and inequality of BaseModel instances
