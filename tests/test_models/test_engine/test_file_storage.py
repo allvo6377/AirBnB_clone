@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """Unit tests for the FileStorage class."""
 import unittest
-import os
+import os.path
 
 import models
 from models import base_model
@@ -71,4 +71,3 @@ class TestFileStorage(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
