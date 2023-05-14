@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-import uuid
+from uuid import uuid4
 from datetime import datetime
 from models import storage
 
