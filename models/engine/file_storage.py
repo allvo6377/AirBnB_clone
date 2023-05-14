@@ -1,10 +1,14 @@
 #!/usr/bin/python3
+"""Contains FileStorage class"""
 import json
 from models.base_model import BaseModel
 
 
 class FileStorage:
-    """Serializes instances to a JSON file and deserializes JSON file to instances"""
+    """
+    Serializes instances to a JSON file
+    and deserializes JSON file to instance
+    """
 
     __file_path = "file.json"
     __objects = {}
@@ -27,7 +31,9 @@ class FileStorage:
             json.dump(d, f)
 
     def reload(self):
-        """Deserialize the JSON file to __objects (only if the JSON file (__file_path) exists)"""
+        """Deserialize the JSON file to __objects
+        (only if the JSON file (__file_path) exists)
+        """
         try:
             with open(FileStorage.__file_path, "r") as f:
                 d = json.load(f)
