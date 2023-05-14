@@ -156,54 +156,31 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     print("** no instance found **")
 
-    def do_update(self, arg):
-        """Usage: update <class> <id> <attribute_name> <attribute_value> or
-       <class>.update(<id>, <attribute_name>, <attribute_value>) or
-       <class>.update(<id>, <dictionary>)
-        Update a class instance of a given id by adding or updating
-        a given attribute key/value pair or dictionary."""
-        argl = parse(arg)
-        objdict = storage.all()
-
-        if len(argl) == 0:
-            print("** class name missing **")
-            return False
-        if argl[0] not in HBNBCommand.__classes:
-            print("** class doesn't exist **")
-            return False
-        if len(argl) == 1:
-            print("** instance id missing **")
-            return False
-        if "{}.{}".format(argl[0], argl[1]) not in objdict.keys():
-            print("** no instance found **")
-            return False
-        if len(argl) == 2:
-            print("** attribute name missing **")
-            return False
-        if len(argl) == 3:
-            try:
-                type(eval(argl[2])) != dict
-            except NameError:
-                print("** value missing **")
-                return False
-
-        if len(argl) == 4:
-            obj = objdict["{}.{}".format(argl[0], argl[1])]
-            if argl[2] in obj.__class__.__dict__.keys():
-                valtype = type(obj.__class__.__dict__[argl[2]])
-                obj.__dict__[argl[2]] = valtype(argl[3])
+    def do_update(self, argv):
+        """Updates an instance based on the class name and id by adding or
+        updating attribute and save it to the JSON file."""
+        arg_list = check_args(argv)
+        if arg_list:
+            if len(arg_list) == 1:
+                print("** instance id missing **")
             else:
-                obj.__dict__[argl[2]] = argl[3]
-        elif type(eval(argl[2])) == dict:
-            obj = objdict["{}.{}".format(argl[0], argl[1])]
-            for k, v in eval(argl[2]).items():
-                if (k in obj.__class__.__dict__.keys() and
-                        type(obj.__class__.__dict__[k]) in {str, int, float}):
-                    valtype = type(obj.__class__.__dict__[k])
-                    obj.__dict__[k] = valtype(v)
+                instance_id = "{}.{}".format(arg_list[0], arg_list[1])
+                if instance_id in self.storage.all():
+                    if len(arg_list) == 2:
+                        print("** attribute name missing **")
+                    elif len(arg_list) == 3:
+                        print("** value missing **")
+                    else:
+                        obj = self.storage.all()[instance_id]
+                        if arg_list[2] in type(obj).__dict__:
+                            v_type = type(obj.__class__.__dict__[arg_list[2]])
+                            setattr(obj, arg_list[2], v_type(arg_list[3]))
+                        else:
+                            setattr(obj, arg_list[2], arg_list[3])
                 else:
-                    obj.__dict__[k] = v
-        storage.save()
+                    print("** no instance found **")
+
+            self.storage.save()
 
     def do_count(self, arg):
         """Retrieve the number of instances of a class"""
@@ -217,4 +194,3 @@ class HBNBCommand(cmd.Cmd):
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
-
