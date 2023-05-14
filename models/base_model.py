@@ -11,6 +11,8 @@ class BaseModel:
 
     def __init__(self, *args, **kwargs):
         """Initialize a new BaseModel instance"""
+
+        from models import storage
         if kwargs:
             for key, value in kwargs.items():
                 if key == "created_at" or key == "updated_at":
@@ -29,6 +31,7 @@ class BaseModel:
 
     def save(self):
         """Update the updated_at attribute with the current datetime"""
+        from models import storage
         self.updated_at = datetime.now()
         self.storage.save()
 
