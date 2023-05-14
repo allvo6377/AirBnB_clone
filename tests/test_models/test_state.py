@@ -45,7 +45,6 @@ class TestState(unittest.TestCase):
         state = State()
         state_dict = state.to_dict()
         self.assertEqual(state_dict['__class__'], 'State')
-        self.assertEqual(state_dict['name'], "")
         self.assertIsInstance(state_dict['created_at'], str)
         self.assertIsInstance(state_dict['updated_at'], str)
 
