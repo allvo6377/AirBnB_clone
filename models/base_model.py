@@ -7,8 +7,6 @@ from models.engine.file_storage import FileStorage
 class BaseModel:
     """Defines all common attributes/methods for other classes"""
 
-    storage = FileStorage()
-
     def __init__(self, *args, **kwargs):
         """Initialize a new BaseModel instance"""
 
