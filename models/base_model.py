@@ -3,6 +3,8 @@ from uuid import uuid4
 from datetime import datetime
 from models.engine.file_storage import FileStorage
 
+storage = FileStorage()
+
 
 class BaseModel:
     """Defines all common attributes/methods for other classes"""
@@ -29,7 +31,7 @@ class BaseModel:
     def save(self):
         """Update the updated_at attribute with the current datetime"""
         self.updated_at = datetime.now()
-        storage.save()
+        storage.save(self)
 
     def to_dict(self):
         """Return a dictionary representation of the BaseModel instance"""
