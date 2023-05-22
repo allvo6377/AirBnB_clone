@@ -10,6 +10,9 @@
   flex-basis: 100%;
   font-size: 30px;
   text-align: left;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
 }
 .places article {
   flex-basis: 390px;
@@ -35,6 +38,9 @@
   justify-content: center;
   align-items: center;
   flex: 5;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
 }
 .places article .price_by_night {
     color: #FF5A5F;
@@ -102,6 +108,9 @@
 	size: 16px;	
 	border-bottom: 1px solid #DDDDDD;
   justify-content: flex-start;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
 }
 .places article .amenities ul,
 .places article .reviews ul{
@@ -127,6 +136,9 @@
 
 .places article .reviews ul li h3{
 	font-size: 14px;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
 }
 .places article .reviews ul li p{
 	font-size: 12px;
@@ -147,3 +159,14 @@
 footer {
    position: relative;
  }
+
+ /* Align header 1 as screen gets smaller */
+@media only screen and (max-width: 1000px) {
+  .places h1 {
+    width: 90%;
+    margin: 5%;
+    -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  }
+}

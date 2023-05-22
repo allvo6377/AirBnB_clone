@@ -147,3 +147,11 @@
 footer {
    position: relative;
  }
+
+ /* Align header 1 as screen gets smaller */
+@media only screen and (max-width: 1000px) {
+  .places h1 {
+    width: 90%;
+    margin: 5%;
+  }
+}
